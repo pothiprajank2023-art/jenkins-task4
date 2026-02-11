@@ -1,2 +1,2 @@
 Hello from GitHub
-This file is used for Jenkins Git integration
+This file is modified for Poll SCM test
