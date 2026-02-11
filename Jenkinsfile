@@ -8,4 +8,13 @@ pipeline {
             }
         }
     }
+
+    post {
+        success {
+            echo 'Post Build Action: BUILD SUCCESSFUL'
+        }
+        failure {
+            echo 'Post Build Action: BUILD FAILED'
+        }
+    }
 }
