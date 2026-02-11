@@ -2,19 +2,34 @@ pipeline {
     agent any
 
     stages {
-        stage('SCM Pipeline') {
+        stage('Checkout') {
             steps {
-                echo 'Hello from Jenkinsfile in GitHub'
+                echo 'Code checkout completed'
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                echo 'Compiling Java code'
+                bat 'javac HelloJava.java'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                echo 'Running Java program'
+                bat 'java HelloJava'
             }
         }
     }
 
     post {
         success {
-            echo 'Post Build Action: BUILD SUCCESSFUL'
+            archiveArtifacts artifacts: '*.class', fingerprint: true
+            echo 'Mini CI Pipeline Successful'
         }
         failure {
-            echo 'Post Build Action: BUILD FAILED'
+            echo 'Mini CI Pipeline Failed'
         }
     }
 }
